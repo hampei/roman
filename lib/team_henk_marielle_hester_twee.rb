@@ -44,12 +44,13 @@ class TeamHenkMarielleHesterTwee
 
   def initialize(roman, mode = 'arabic')
     @roman = roman
+    @mode = mode
   end
 
   [:+, :-, :*, :**, :/, :%].each do |op|
     define_method op do |other|
       res = self.to_i.send(op, other.to_i)
-      mode == 'arabic' ? res : self.class.to_roman(res)
+      @mode == 'arabic' ? res : self.class.to_roman(res)
     end
   end
 
